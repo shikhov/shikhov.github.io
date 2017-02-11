@@ -1,1 +1,47 @@
-Hello World
+<html>
+<head>
+        <title>rus highlight</title>
+        <style type="text/css">
+        #header {
+  font-family: Verdana;
+  font-size: 14pt;
+  text-align: center;
+}
+
+#input,
+#output {
+  font-family: Verdana;
+  font-size: 11pt;
+  display: block;
+  margin-left: auto;    
+  margin-right: auto;
+  margin-top: 30px;    
+}
+
+#output {  
+  margin-top: 10px;
+}
+.rus {
+  background: #FFCC6E none repeat-x;
+}
+
+        </style>
+<script type='text/javascript'>
+window.onload=function(){
+var text = document.getElementById('input');
+text.oninput = function() {
+  elem = document.getElementById('output');
+  elem.innerHTML = this.value.replace(/([А-яЁё])/g, '<span class="rus">$1</span>');
+};
+
+}
+
+</script>
+</head>
+<body>
+
+<div id="header">Подсветка русских символов в тексте</div>
+<textarea id="input" rows="5" cols="50"></textarea>
+<div id="output"></div>
+</body>
+</html>
