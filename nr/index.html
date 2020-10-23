@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <script type="text/javascript">
-            result = window.location.href.match(/\/nr\/\?(.+)/i);
-            window.location.href = "Notes://" + result[1];
+            // result = window.location.href.match(/\/nr\/\?(.+)/i);
+            // window.location.href = "Notes://" + result[1];
+            window.location.href = window.location.search;
             window.close();
         </script>
         <title>Notes Redirector</title>
