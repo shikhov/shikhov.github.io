@@ -4,7 +4,9 @@
         <meta charset="UTF-8">
         <script type="text/javascript">
             // window.location.href = window.location.search.replace('?', '');
-            alert(window.location.search.replace('?', ''));
+            res = window.location.search.replace('?', '');
+            alert(res);
+            window.location.href = res;
             window.close();
         </script>
         <title>Notes Redirector</title>
