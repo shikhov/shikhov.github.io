@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="urn:DefaultNamespace" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:DefaultNamespace" xmlns:intf="urn:DefaultNamespace" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <wsdl:types>
+  <schema targetNamespace="urn:DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="CLIENTCONTEXT">
+    <sequence>
+     <element name="USERID" type="xsd:string"/>
+     <element name="USERTYPENAME" type="xsd:string"/>
+     <element name="ISCORP" type="xsd:string"/>
+     <element name="ORGNAME" type="xsd:string"/>
+     <element name="ACCOUNTNUMBER" type="xsd:string"/>
+     <element name="JURNAME" type="xsd:string"/>
+     <element name="ISNONRESIDENT" type="xsd:string"/>
+     <element name="COUNTRY" type="xsd:string"/>
+     <element name="IN09" type="xsd:string"/>
+     <element name="PARENTORGNAME" type="xsd:string"/>
+     <element name="PARENTUSERID" type="xsd:string"/>
+     <element name="MACROSEGMENT" type="xsd:string"/>
+     <element name="SEGMENTNAME" type="xsd:string"/>
+     <element name="PODSEGMENT" type="xsd:string"/>
+     <element name="ACTIVESTATE" type="xsd:string"/>
+     <element name="ISOPER" type="xsd:string"/>
+     <element name="FILIALNAME" type="xsd:string"/>
+     <element name="MANAGERFIO" type="xsd:string"/>
+     <element name="JURADDRESS" type="xsd:string"/>
+     <element name="REGION" type="xsd:string"/>
+     <element name="REGIONTYPE" type="xsd:string"/>
+     <element name="TOWNTYPE" type="xsd:string"/>
+     <element name="TOWNNAME" type="xsd:string"/>
+     <element name="DISTRICT" type="xsd:string"/>
+     <element name="DISTRICTTYPE" type="xsd:string"/>
+     <element name="AREA" type="xsd:string"/>
+     <element name="AREATYPE" type="xsd:string"/>
+     <element name="STREETTYPE" type="xsd:string"/>
+     <element name="STREETNAME" type="xsd:string"/>
+     <element name="HOUSE" type="xsd:string"/>
+     <element name="KLADRID" type="xsd:string"/>
+     <element name="BANKID" type="xsd:string"/>
+     <element name="BANKNAME" type="xsd:string"/>
+     <element name="INN" type="xsd:string"/>
+     <element name="UNIQUEID" type="xsd:string"/>
+     <element name="KPP" type="xsd:string"/>
+     <element name="BIC" type="xsd:string"/>
+     <element name="PAYACCOUNT" type="xsd:string"/>
+     <element name="CORRACCOUNT" type="xsd:string"/>
+     <element name="PHONE" type="xsd:string"/>
+     <element name="EMAIL" type="xsd:string"/>
+     <element name="FORMSOBSTNAME" type="xsd:string"/>
+     <element name="FORMORGNAME" type="xsd:string"/>
+     <element name="OKOGUNAME" type="xsd:string"/>
+     <element name="OKONHNAME" type="xsd:string"/>
+     <element name="CODEWORD" type="xsd:string"/>
+     <element name="INCLUDEDEBTOR" type="xsd:string"/>
+     <element name="SPECCUSTOMER" type="xsd:string"/>
+     <element name="SERVICELEVEL" type="xsd:string"/>
+     <element name="BILLTYPEID" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+ <message name="CREATECLIENTRequest">
+  <part name="CONTEXT" type="impl:CLIENTCONTEXT"/>
+ </message>
+ <message name="CREATEACCOUNTRequest">
+  <part name="USRID" type="xsd:string"/>
+  <part name="ACCID" type="xsd:string"/>
+  <part name="ACCNUM" type="xsd:string"/>
+  <part name="ACCSTATUS" type="xsd:string"/>
+  <part name="ACCCODEWORD" type="xsd:string"/>
+  <part name="ACCINCLUDEDEBTOR" type="xsd:string"/>
+  <part name="ACCSPECCUSTOMER" type="xsd:string"/>
+  <part name="ACCFILIALID" type="xsd:string"/>
+  <part name="ACCUSERTYPENAME" type="xsd:string"/>
+  <part name="ACCBANKID" type="xsd:string"/>
+  <part name="ACCPAYACCOUNT" type="xsd:string"/>
+  <part name="ACCBILLTYPEID" type="xsd:string"/>
+ </message>
+ <message name="CREATEACCOUNTResponse">
+  <part name="CREATEACCOUNTReturn" type="xsd:boolean"/>
+ </message>
+ <message name="CREATECLIENTResponse">
+  <part name="CREATECLIENTReturn" type="xsd:boolean"/>
+ </message>
+ <portType name="ClientAPI">
+  <operation name="CREATECLIENT" parameterOrder="CONTEXT">
+   <input message="impl:CREATECLIENTRequest" name="CREATECLIENTRequest"/>
+   <output message="impl:CREATECLIENTResponse" name="CREATECLIENTResponse"/>
+  </operation>
+  <operation name="CREATEACCOUNT" parameterOrder="USRID ACCID ACCNUM ACCSTATUS ACCCODEWORD ACCINCLUDEDEBTOR ACCSPECCUSTOMER ACCFILIALID ACCUSERTYPENAME ACCBANKID ACCPAYACCOUNT ACCBILLTYPEID">
+   <input message="impl:CREATEACCOUNTRequest" name="CREATEACCOUNTRequest"/>
+   <output message="impl:CREATEACCOUNTResponse" name="CREATEACCOUNTResponse"/>
+  </operation>
+ </portType>
+ <binding name="DominoSoapBinding" type="impl:ClientAPI">
+  <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="CREATECLIENT">
+   <wsdlsoap:operation soapAction="CREATECLIENT"/>
+   <input name="CREATECLIENTRequest">
+    <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:DefaultNamespace" use="encoded"/>
+   </input>
+   <output name="CREATECLIENTResponse">
+    <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:DefaultNamespace" use="encoded"/>
+   </output>
+  </operation>
+  <operation name="CREATEACCOUNT">
+   <wsdlsoap:operation soapAction="CREATEACCOUNT"/>
+   <input name="CREATEACCOUNTRequest">
+    <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:DefaultNamespace" use="encoded"/>
+   </input>
+   <output name="CREATEACCOUNTResponse">
+    <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:DefaultNamespace" use="encoded"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="ClientAPIService">
+  <port binding="impl:DominoSoapBinding" name="Domino">
+   <wsdlsoap:address location="http://localhost"/>
+  </port>
+ </service>
+</definitions>
