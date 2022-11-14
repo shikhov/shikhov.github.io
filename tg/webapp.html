@@ -195,10 +195,10 @@
       </fieldset>
       
 
-    <div id="buttons">
-        <button id="btnSave" onclick="sendTime(10);">Сохранить</button>
-    </div>
-
+      <h3>Init Data: </h3>
+      <pre id="initData"></pre>
+      <h3>Init Data (unsafe): </h3>
+      <pre id="initDataUnsafe"></pre>
 
 
 
@@ -210,6 +210,7 @@
         .setText('SAVE SETTINGS')
         .show()
         .onClick(function(){ webviewClose(); });
+
     Telegram.WebApp.ready();
 
     const initData = Telegram.WebApp.initData || '';
